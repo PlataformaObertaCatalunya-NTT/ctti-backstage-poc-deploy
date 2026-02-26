@@ -1,0 +1,20 @@
+name: PoC Deploy Trigger
+on:
+  workflow_dispatch:
+    inputs:
+      target_env:
+        description: 'Entorno de destino'
+        required: true
+        default: 'sandbox'
+        type: choice
+        options: [sandbox, homologacion]
+
+jobs:
+  simulate-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Confirmación de recepción
+        run: |
+          echo "🚀 Desplegando en el entorno: ${{ github.event.inputs.target_env }}"
+          sleep 5
+          echo "✅ Despliegue completado con éxito."
